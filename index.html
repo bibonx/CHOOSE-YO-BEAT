@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instrumentals Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎧 Instrumentals Library</h1>
+
+  <div class="buttons">
+    <button onclick="showCategory('beats')">Beats</button>
+    <button onclick="showCategory('loops')">Loops</button>
+    <button onclick="showCategory('misc')">Miscellaneous</button>
+  </div>
+
+  <div id="audio-list"></div>
+
+  <script>
+    const categories = {
+      beats: ["beats/beat1.mp3", "beats/beat2.mp3"],
+      loops: ["loops/loop1.mp3", "loops/loop2.mp3"],
+      misc: ["misc/misc1.mp3", "misc/misc2.mp3"]
+    };
+
+    function showCategory(category) {
+      const container = document.getElementById('audio-list');
+      container.innerHTML = `<h2>${category}</h2>`;
+      categories[category].forEach(file => {
+        const audio = document.createElement('audio');
+        audio.controls = true;
+        audio.src = file;
+        container.appendChild(audio);
+        container.appendChild(document.createElement('br'));
+      });
+    }
+  </script>
+</body>
+</html>
