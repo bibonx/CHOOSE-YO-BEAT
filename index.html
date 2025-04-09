@@ -17,20 +17,23 @@
   </header>
 
   <main id="audio-container">
-    </main>
+    <p>Sélectionne une catégorie pour commencer 🎶</p>
+  </main>
 
   <script>
-    const audioData = {
-      beats: ["gotham 138bpm.mp3"],
-      loops: ["gotham 138bpm.mp3", "rossi 130bpm.mp3", "st2pid 139cpm.mp3"],
-      misc: ["christopher 130cpm.mp3", "emily140bpm.mp3"]
-    };
-
-    function showCategory(category) {
+    async function showCategory(category) {
       const container = document.getElementById("audio-container");
-      container.innerHTML = ""; // Vide le contenu précédent
+      container.innerHTML = "";
 
-      audioData[category].forEach(file => {
+      const res = await fetch("index.json");
+      const data = await res.json();
+
+      if (!data[category]) {
+        container.innerHTML = "<p>Rien à afficher</p>";
+        return;
+      }
+
+      data[category].forEach(file => {
         const wrapper = document.createElement("div");
         wrapper.className = "audio-wrapper";
 
