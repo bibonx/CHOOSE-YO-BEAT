@@ -1,37 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <title>CHOOSE YO BEATS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>🎧 CHOOSE YO BEATS</h1>
+=======
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Yo Beat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎧 Choose Yo Beat</h1>
+    <div class="buttons">
+      <button onclick="showCategory('beats')">Beats</button>
+      <button onclick="showCategory('loops')">Loops</button>
+      <button onclick="showCategory('misc')">Miscellaneous</button>
+    </div>
+  </header>
+>>>>>>> 92ecfa4 (Amélioration du design)
 
-  <div class="buttons">
-    <button onclick="showCategory('beats')">Beats</button>
-    <button onclick="showCategory('loops')">Loops</button>
-    <button onclick="showCategory('misc')">Miscellaneous</button>
-  </div>
-
-  <div id="audio-list"></div>
+  <main id="audio-container">
+    <p>Sélectionne une catégorie pour commencer 🎶</p>
+  </main>
 
   <script>
+<<<<<<< HEAD
     const categories = {
       beats: ["beats/gotham 138bpm.mp3", "beats/beat2.mp3"],
       loops: ["loops/loop1.mp3", "loops/loop2.mp3"],
       misc: ["misc/misc1.mp3", "misc/misc2.mp3"]
+=======
+    const audioData = {
+      beats: ["beat1.mp3", "beat2.mp3"],
+      loops: ["loop1.mp3", "loop2.mp3"],
+      misc: ["misc1.mp3", "misc2.mp3"]
+>>>>>>> 92ecfa4 (Amélioration du design)
     };
 
     function showCategory(category) {
-      const container = document.getElementById('audio-list');
-      container.innerHTML = `<h2>${category}</h2>`;
-      categories[category].forEach(file => {
-        const audio = document.createElement('audio');
+      const container = document.getElementById("audio-container");
+      container.innerHTML = ""; // Vide le contenu précédent
+
+      audioData[category].forEach(file => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "audio-wrapper";
+
+        const title = document.createElement("h3");
+        title.textContent = file;
+
+        const audio = document.createElement("audio");
         audio.controls = true;
-        audio.src = file;
-        container.appendChild(audio);
-        container.appendChild(document.createElement('br'));
+        audio.src = `${category}/${file}`;
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(audio);
+        container.appendChild(wrapper);
       });
     }
   </script>
